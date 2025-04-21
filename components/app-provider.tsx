@@ -1,7 +1,16 @@
+/*
+ * @Author: 刘洪壮 liuhongzhuang@nextmar.com
+ * @Date: 2025-04-21 19:14:57
+ * @LastEditors: 刘洪壮 liuhongzhuang@nextmar.com
+ * @LastEditTime: 2025-04-21 19:28:43
+ * @FilePath: /vue-react-converter/components/app-provider.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
+import { getModelKey } from "@/lib/api-utils"
 
 type AppContextType = {
   apiKey: string
@@ -29,6 +38,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [apiKey, setApiKey] = useState("")
   const [vueOptimizePrompt, setVueOptimizePrompt] = useState(defaultVueOptimizePrompt)
   const [reactConvertPrompt, setReactConvertPrompt] = useState(defaultReactConvertPrompt)
+
+  // 在组件挂载时初始化API密钥
+  useEffect(() => {
+    const modelKey = getModelKey("OPENAI")
+    if (modelKey) {
+      setApiKey(modelKey)
+    }
+  }, []);
+
 
   return (
     <AppContext.Provider

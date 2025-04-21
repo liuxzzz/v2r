@@ -21,6 +21,7 @@ export function VueOptimizer({ onCodeOptimized }: VueOptimizerProps) {
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
 
+
   const handleOptimize = async () => {
     if (!apiKey) {
       toast({
