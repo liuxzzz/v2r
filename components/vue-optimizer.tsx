@@ -62,7 +62,6 @@ export function VueOptimizer({ onCodeOptimized }: VueOptimizerProps) {
               content: inputCode,
             },
           ],
-          temperature: 0.7,
         }),
       })
 
